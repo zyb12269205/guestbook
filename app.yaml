@@ -8,12 +8,24 @@ handlers:
 
 # access the static resources in the root director
 
-- url: /(.*)
-  static_files: \1
-  upload: (.*)
+#- url: /(.*)
+#  static_files: \1
+#  upload: (.*)
 
+- url: /css
+  static_dir: css
 
-- url: .*
+- url: /js
+  static_dir: js
+
+- url: /fonts
+  static_dir: fonts
+
+- url: /Bootstrap_files
+  static_dir: Bootstrap_files
+  
+
+- url: /.*
   script: guestbook.app
 
 
@@ -21,3 +33,5 @@ handlers:
 libraries:
 - name: webapp2
   version: "2.5.2"
+- name: jinja2
+  version: latest

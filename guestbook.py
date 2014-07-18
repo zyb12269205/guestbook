@@ -16,13 +16,53 @@
 #
 
 
-import cgi
-import datetime
+
+import os
 import webapp2
+from google.appengine.ext.webapp.template import render
 
-from google.appengine.api import users
+from data_access import access_key, Access
 
-from AccessPage import AccessPage, Login, SignUp
+ACCESS_DETAIL = None
+
+class HomePage(webapp2.RequestHandler):
+  def get(self):
+    tmpl = os.path.join(os.path.dirname(__file__), 'home.html')
+    self.response.out.write(render(tmpl,{}))
+
+
+class Login(webapp2.RequestHandler):
+  def post(self):
+    access = Access(parent=access_key)
+    access_detail = access.verify_access(self.request.get('member_id'), self.request.get('password'))
+    if access_detail:
+        self.redirect('/member')
+        ACCESS_DETAIL = access_detail
+    else:
+        self.redirect('/')
+
+class MemberPage(webapp2.RequestHandler):
+  def get(self):
+    tmpl = os.path.join(os.path.dirname(__file__), 'member.html')
+    self.response.out.write(render(tmpl,{}))
+
+
+
+class SignUp(webapp2.RequestHandler):
+  def post(self):
+    access = Access(parent=access_key)
+    try:
+        access.member_id = int(self.request.get('member_id'))
+        access.password = self.request.get('password')
+        access.project_access = 1
+        access.member_access = 0
+        access.progress_access = 0
+        access.attendance_access = 1
+        access.meeting_access = 1
+        access.put()
+    except:
+        pass
+    self.redirect('/')
 
 
 class Dummy(webapp2.RequestHandler):
@@ -30,9 +70,11 @@ class Dummy(webapp2.RequestHandler):
         self.response.out.write("Hello World!")
 
 
+
 app = webapp2.WSGIApplication([
-  ('/', AccessPage),
+  ('/', HomePage),
   ('/login', Login),
+  ('/member', MemberPage),
   ('/signup', SignUp),
   ('/home', Dummy),
 ], debug=True)
