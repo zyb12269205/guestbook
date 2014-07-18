@@ -182,11 +182,17 @@ style.firebugResetStyles {
           <ul class="nav navbar-nav">
 		    <li><a href="#">Home</a></li>
             <li><a href="#">Projects</a></li>
-			<li><a href="#">Meetings</a></li>
-			<li><a href="#">Login</a></li>
-			<li><a href="#">Sign Up</a></li>
+			<li><a href="#">Meetings</a></li>			
+			<li><a href="/signup.html">Sign Up</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
+			<li>
+			<form action="/login" method="post" class="form-horizontal">
+				<h6  class="label label-default">Member ID</h6><input type="text" name="member_id">
+				<h6  class="label label-default">Password</h6><input type="text" name="password">
+			</form>
+			</li>
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>

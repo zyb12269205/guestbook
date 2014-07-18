@@ -5,8 +5,18 @@ api_version: 1
 threadsafe: yes
 
 handlers:
+
+# access the static resources in the root director
+
+- url: /(.*)
+  static_files: \1
+  upload: (.*)
+
+
 - url: .*
   script: guestbook.app
+
+
 
 libraries:
 - name: webapp2
