@@ -33,64 +33,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="178" column="41" selection-start="12746" selection-end="12746" vertical-scroll-proportion="-5.125">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="guestbook.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="guestbook.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/guestbook.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="58" selection-start="1364" selection-end="1364" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="member.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/member.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="30" selection-start="2294" selection-end="2294" vertical-scroll-proportion="0.33333334">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="theme2.htm" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/theme2.htm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="36.875">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="theme3.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/theme3.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="55" selection-start="3665" selection-end="3751" vertical-scroll-proportion="-7.5">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="theme.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/theme.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="222" column="8" selection-start="14455" selection-end="14524" vertical-scroll-proportion="-4.6">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AccessPage.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AccessPage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="28" selection-end="28" vertical-scroll-proportion="-0.8181818">
+            <state line="102" column="0" selection-start="3055" selection-end="3564" vertical-scroll-proportion="0.44537815">
               <folding />
             </state>
           </provider>
@@ -99,7 +45,16 @@
       <file leaf-file-name="data_access.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_access.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="0" selection-start="1194" selection-end="1194" vertical-scroll-proportion="0.0">
+            <state line="33" column="51" selection-start="1291" selection-end="1291" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="member.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/member.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="85" column="29" selection-start="3764" selection-end="3764" vertical-scroll-proportion="-0.625">
               <folding />
             </state>
           </provider>
@@ -128,12 +83,12 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/data_access.py" />
         <option value="$PROJECT_DIR$/AccessPage.py" />
-        <option value="$PROJECT_DIR$/guestbook.py" />
         <option value="$PROJECT_DIR$/app.yaml" />
         <option value="$PROJECT_DIR$/home.html" />
         <option value="$PROJECT_DIR$/member.html" />
+        <option value="$PROJECT_DIR$/data_access.py" />
+        <option value="$PROJECT_DIR$/guestbook.py" />
       </list>
     </option>
   </component>
@@ -174,8 +129,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Favorites" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -196,16 +149,18 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Favorites" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="preferences.sourceCode.General" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="preferences.sourceCode.General" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../appengine-try-python-flask" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -322,7 +277,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21162444" sideWeight="0.67147434" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -333,8 +288,8 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -391,68 +346,58 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/AccessPage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="0" selection-start="28" selection-end="28" vertical-scroll-proportion="-0.8181818" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/theme.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="222" column="8" selection-start="14455" selection-end="14524" vertical-scroll-proportion="-4.6" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="178" column="41" selection-start="12746" selection-end="12746" vertical-scroll-proportion="0.22862454" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/theme3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="55" selection-start="3665" selection-end="3751" vertical-scroll-proportion="0.32258064" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/theme2.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.5499125" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/member.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="85" column="29" selection-start="3764" selection-end="3764" vertical-scroll-proportion="-0.625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data_access.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="1194" selection-end="1194" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AccessPage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="28" selection-end="28" vertical-scroll-proportion="-0.8181818">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/guestbook.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="58" selection-start="1364" selection-end="1364" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/theme2.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="36.875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/theme3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="55" selection-start="3665" selection-end="3751" vertical-scroll-proportion="-7.5">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/theme.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="222" column="8" selection-start="14455" selection-end="14524" vertical-scroll-proportion="-4.6">
+        <state line="33" column="51" selection-start="1291" selection-end="1291" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="257" selection-end="257" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="19" column="0" selection-start="257" selection-end="257" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/home.html">
+    <entry file="file://$PROJECT_DIR$/guestbook.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="178" column="41" selection-start="12746" selection-end="12746" vertical-scroll-proportion="-5.125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/member.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="30" selection-start="2294" selection-end="2294" vertical-scroll-proportion="0.33333334">
+        <state line="102" column="0" selection-start="3055" selection-end="3564" vertical-scroll-proportion="0.44537815">
           <folding />
         </state>
       </provider>
