@@ -33,15 +33,15 @@ class BasePage(webapp2.RequestHandler):
   def redirect_cookie(self, url):
     key_detail = self.request.cookies.get(KEY, None)
 
-    if key_detail is None:
+    if key_detail is None or key_detail == '':
       key_detail = self.request.get(KEY, None)
 
-    expires = time.strftime("%a, %d-%b-%Y %T GMT", time.gmtime(time.time() +  0.5 * 3600 ))#  half an hour from now))
+    expires = time.strftime("%a, %d-%b-%Y %H:%M:%S GMT", time.gmtime(time.time() +  0.5 * 3600 ))#  half an hour from now))
     if key_detail is not None:
       self.response.headers.add_header(
         'Set-Cookie',
         'member_id=%s; expires=%s'
-          % ( self.request.get(KEY).encode(), expires))
+          % ( key_detail.encode(), expires))
     
     self.redirect(url)
 
@@ -92,19 +92,19 @@ class MemberPage(BasePage):
 
 class DetailUpdate(BasePage):
   def post(self):
-    if self.request.cookies.get('member_id') is None:
+    if self.request.cookies.get(KEY) == '':
       self.redirect('/')
     member = Member(parent=member_key)
     member_detail = Member(
-      member_id = self.request.get('member_id'),
+      member_id = int(self.request.cookies.get(KEY)),
       english_name = self.request.get('engish_name'),
       chinese_name = self.request.get('chinese_name'),
       salutation = self.request.get('salutation'),
       nric = self.request.get('nric'),
       nationality = self.request.get('nationality'),
-      join_time = self.request.get('join_time'),
+      #join_time = self.request.get('join_time'),
       title = self.request.get('title'),
-      date_of_birth = self.request.get('date_of_birth'),
+      #date_of_birth = self.request.get('date_of_birth'),
       contact = self.request.get('contact'),
       address = self.request.get('address'),
       email = self.request.get('email'),
