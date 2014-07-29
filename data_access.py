@@ -1,4 +1,5 @@
-__author__ = 'yingbozhan'
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 from google.appengine.ext import ndb
 
@@ -28,34 +29,33 @@ class Access(ndb.Model):
 
 
 class Member(ndb.Model):
-    member_id = ndb.IntegerProperty(required=True)
-    english_name = ndb.StringProperty(required=True)
-    chinese_name = ndb.StringProperty(required=True)
-    salutation = ndb.StringProperty(required=True)#, choices=['Mr','Ms','Mrs','Miss'])
-    nric = ndb.StringProperty(required=True)
-    nationality = ndb.StringProperty(required=True)
-    #join_time = ndb.DateProperty()#required=True)
-    title = ndb.StringProperty(required=True)#, choices=['CC','CL','DTM'])
-    #date_of_birth = ndb.DateProperty()#required=True)
-    contact = ndb.IntegerProperty(required=True)
+    member_id = ndb.IntegerProperty()
+    english_name = ndb.StringProperty()
+    chinese_name = ndb.StringProperty()
+    salutation = ndb.StringProperty()
+    nric = ndb.StringProperty()
+    nationality = ndb.StringProperty()
+    join_time = ndb.DateProperty()
+    title = ndb.StringProperty()
+    date_of_birth = ndb.DateProperty()
+    contact = ndb.StringProperty()
     address = ndb.StringProperty()
-    email = ndb.StringProperty(required=True)
+    email = ndb.StringProperty()
     company = ndb.StringProperty()
     industry = ndb.StringProperty()
     job_title = ndb.StringProperty()
 
     @classmethod
     def retrieval_member_detail(cls, member_id_pass):
-      return cls.query(Member.member_id == int(member_id_pass))
+      details =  cls.query(Member.member_id == int(member_id_pass)).fetch()
+      if len(details) == 1: return details[0]
+      else: return None
 
-    @classmethod
-    def add_update_member_detail(cls, member_id_pass, member):
-      member.put()
-      return cls.retrieval_member_detail(member_id_pass)
-
+    
 
 class Project(ndb.Model):
     project_id = ndb.IntegerProperty()
+    project_name = ndb.StringProperty()
 
 
 class Meeting(ndb.Model):

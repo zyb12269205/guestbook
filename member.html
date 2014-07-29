@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0043)http://getbootstrap.com/examples/dashboard/ -->
+{% autoescape on %}
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,7 +13,9 @@
     <title>Dashboard Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/bootstrap-datetimepicker.min.css">
+
 
     <!-- Custom styles for this template -->
     <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
@@ -32,6 +34,14 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style id="holderjs-style" type="text/css"></style>
+
+    <script type="text/javascript">
+      $(function() {
+        $('#datetimepicker_time').datetimepicker({
+          pickTime: false
+        });
+      });
+    </script>
 </head>
 
 <body>
@@ -80,35 +90,35 @@
                         <li>
                             <div class="input-group">
                                 <span class="input-group-addon">English Name</span>
-                                <input type="text" name="english_name" class="form-control" placeholder="{{ member.english_name }}">
+                                <input type="text" name="english_name" class="form-control" value="{{ member.english_name }}">
                             </div>
                         </li>
                         </br>
                         <li>
                             <div class="input-group">
                                 <span class="input-group-addon">Chinese Name</span>
-                                <input type="text" name="chinese_name" class="form-control" placeholder="Username">
+                                <input type="text" name="chinese_name" class="form-control" value="{{ member.chinese_name }}">
                             </div>
                         </li>
                         </br>
                         <li>
                             <div class="input-group">
                                 <span class="input-group-addon">Salutation</span>
-                                <input type="text" name="salutation" class="form-control" placeholder="Username">
+                                <input type="text" name="salutation" class="form-control" value="{{ member.salutation }}">
                             </div>
                         </li>
                         </br>
                         <li>
                             <div class="input-group">
                                 <span class="input-group-addon">NRIC</span>
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" name="nric" class="form-control" value="{{ member.nric }}">
                             </div>
                         </li>
                         </br>
                         <li>
                             <div class="input-group">
                                 <span class="input-group-addon">Nationality</span>
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" name="nationality" class="form-control" value="{{ member.nationality }}">
                             </div>
                         </li>
                         </br>
@@ -116,21 +126,30 @@
                         <li>
                             <div class="input-group">
                                 <span class="input-group-addon">Join Time</span>
-                                <input type="text" class="form-control" placeholder="Username">
+                                <!--<input type="text" name="join_time" class="form-control" value="{{ member.join_time }}">-->
+
+                                <div id="datetimepicker_time" class="input-append">
+                                    <input data-format="yyyy-MM-dd" name="join_time" type="text" value="{{ member.join_time }}">
+                                    <span class="add-on">
+                                        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                                        </i>
+                                    </span>
+                                </div>
+
                             </div>
                         </li>
                         </br>
                         <li>
                             <div class="input-group">
                                 <span class="input-group-addon">Member ID</span>
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" name="member_id" class="form-control" value="{{ member.member_id }}">
                             </div>
                         </li>
                         </br>
                         <li>
                             <div class="input-group">
                                 <span class="input-group-addon">Title</span>
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" name="title" class="form-control" value="{{ member.title }}">
                             </div>
                         </li>
                         </br>
@@ -138,33 +157,40 @@
 
                 </div>
 
-                <div class="col-xs-6 col-sm-6 placeholder navbar-form navbar-right">
+                <div class="col-xs-6 col-sm-6 value navbar-form navbar-right">
                     <ul class="nav nav-sidebar text-left">
                         <li>
                             <div class="input-group">
                                 <span class="input-group-addon">Date Of Birth</span>
-                                <input type="text" class="form-control" placeholder="Username">
+                                <!--<input type="text" name="date_of_birth" class="form-control" value="{{ member.date_of_birth }}">-->
+                                <div id="datetimepicker_time2" class="input-append">
+                                    <input data-format="yyyy-MM-dd" name="join_time" type="text" value="{{ member.join_time }}">
+                                    <span class="add-on">
+                                        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                                        </i>
+                                    </span>
+                                </div>
                             </div>
                         </li>
                         </br>
                         <li>
                             <div class="input-group">
                                 <span class="input-group-addon">Contact</span>
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" name="contact" class="form-control" value="{{ member.contact }}">
                             </div>
                         </li>
                         </br>
                         <li>
                             <div class="input-group">
                                 <span class="input-group-addon">Address</span>
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" name="address" class="form-control" value="{{ member.address }}">
                             </div>
                         </li>
                         </br>
                         <li>
                             <div class="input-group">
                                 <span class="input-group-addon">Email</span>
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" name="email" class="form-control" value="{{ member.email }}">
                             </div>
                         </li>
                         </br>
@@ -172,21 +198,21 @@
                         <li>
                             <div class="input-group">
                                 <span class="input-group-addon">Company Name</span>
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" name="company" class="form-control" value="{{ member.company }}">
                             </div>
                         </li>
                         </br>
                         <li>
                             <div class="input-group">
                                 <span class="input-group-addon">Industry</span>
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" name="industry" class="form-control" value="{{ member.industry }}">
                             </div>
                         </li>
                         </br>
                         <li>
                             <div class="input-group">
                                 <span class="input-group-addon">Job Title</span>
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" name="job_title" class="form-control" value="{{ member.job_title }}">
                             </div>
                         </li>
                         </br>
@@ -209,9 +235,10 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="./theme3_files/jquery.min.js"></script>
-<script src="./theme3_files/bootstrap.min.js"></script>
-<script src="./theme3_files/docs.min.js"></script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/docs.min.js"></script>
+<script src="./js/bootstrap-datetimepicker.min.js"></script>
 
 
 <div id="global-zeroclipboard-html-bridge" class="global-zeroclipboard-container"
@@ -255,3 +282,4 @@
     <div id="fullScreener_closetab"></div>
 </div>
 </html>
+{% endautoescape %}
