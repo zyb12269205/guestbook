@@ -25,7 +25,11 @@ class Access(ndb.Model):
 
     @classmethod
     def verify_access(cls, member_id_pass, password_pass):
-        return cls.query(Access.member_id == int(member_id_pass), Access.password == password_pass)
+        try:
+            return cls.query(Access.member_id == int(member_id_pass), Access.password == password_pass)
+        except:
+            return None
+
 
 
 class Member(ndb.Model):
