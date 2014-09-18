@@ -64,6 +64,7 @@ class Project(ndb.Model):
 
 class Meeting(ndb.Model):
     meeting_id = ndb.IntegerProperty()
+    meeting_time = ndb.StringProperty()
 
 class Attendance(ndb.Model):
     meeting_id = ndb.IntegerProperty()

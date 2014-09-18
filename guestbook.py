@@ -19,42 +19,14 @@
 
 
 import logging
-import webapp2
-import time
 import os
-
-from data_access import access_key, member_key, Access, Member, Project, project_key
 from google.appengine.ext.webapp.template import render
 
 
-KEY = 'member_id'
-class BasePage(webapp2.RequestHandler):
-    def redirect_cookie(self, url):
-        key_detail = self.request.cookies.get(KEY, None)
+from constants import *
+from data_access import *
+from util import *
 
-        if key_detail is None or key_detail == '':
-            key_detail = self.request.get(KEY, None)
-
-        expires = time.strftime("%a, %d-%b-%Y %H:%M:%S GMT",
-                                time.gmtime(time.time() + 0.5 * 3600))#  half an hour from now))
-        if key_detail is not None:
-            self.response.headers.add_header(
-                'Set-Cookie',
-                'member_id=%s; expires=%s'
-                % ( key_detail.encode(), expires))
-
-        self.redirect(url)
-
-    def update_cookie(self, url):
-        key_detail = self.request.get(KEY, None)
-        if key_detail is None: self.redirect_cookie('/')
-        expires = time.strftime("%a, %d-%b-%Y %H:%M:%S GMT",
-                                time.gmtime(time.time() + 0.5 * 3600))#  half an hour from now))
-        self.response.headers.add_header(
-            'Set-Cookie',
-            'member_id=%s; expires=%s'
-            % ( key_detail.encode(), expires))
-        self.redirect(url)
 
 
 class HomePage(BasePage):
@@ -62,28 +34,15 @@ class HomePage(BasePage):
         template = os.path.join(os.path.dirname(__file__), 'home.html')
         self.response.out.write(render(template, {}))
 
-
 class Login(BasePage):
     def post(self):
         access = Access(parent=access_key)
         logging.error(self.request)
-        access_detail = access.verify_access(self.request.get(KEY), self.request.get('password'))
+        access_detail = access.verify_access(self.request.get(MEMBER_ID), self.request.get('password'))
         if access_detail:
-            self.update_cookie('/member')
+            self.insert_cookie('/personal')
         else:
             self.redirect('/')
-
-
-class MemberPage(BasePage):
-    def get(self):
-        if self.request.cookies.get(KEY) is None:
-            self.redirect('/')
-        member = Member(parent=member_key)
-        member_detail = member.retrieval_member_detail(self.request.cookies.get(KEY))
-        template = os.path.join(os.path.dirname(__file__), 'member.html')
-        self.response.out.write(member_detail)
-        self.response.out.write(render(template, {"member": member_detail}))
-
 
 class SignUp(webapp2.RequestHandler):
     def get(self):
@@ -103,15 +62,27 @@ class SignUp(webapp2.RequestHandler):
             access.put()
         except:
             pass
-        self.update_cookie('/')
+        self.insert_cookie('/')
+
+
+class MemberPage(BasePage):
+    def get(self):
+        if self.request.cookies.get(MEMBER_ID) is None:
+            self.redirect('/')
+        member = Member(parent=member_key)
+        member_detail = member.retrieval_member_detail(self.request.cookies.get(MEMBER_ID))
+        template = os.path.join(os.path.dirname(__file__), 'member.html')
+        self.response.out.write(member_detail)
+        self.response.out.write(render(template, {"member": member_detail}))
+
 
 class MemberUpdate(BasePage):
     def post(self):
-        if self.request.cookies.get(KEY) == '':
+        if self.request.cookies.get(MEMBER_ID) == '':
             self.redirect('/')
-        member = Member(parent=member_key).retrieval_member_detail(self.request.cookies.get(KEY))
+        member = Member(parent=member_key).retrieval_member_detail(self.request.cookies.get(MEMBER_ID))
         if member is None: member = Member(parent=member_key)
-        member.member_id = int(self.request.cookies.get(KEY))
+        member.member_id = int(self.request.cookies.get(MEMBER_ID))
         member.english_name = self.request.get('english_name', '')
         member.chinese_name = self.request.get('chinese_name', '')
         member.salutation = self.request.get('salutation', '')
@@ -160,13 +131,78 @@ class refresh_project(webapp2.RequestHandler):
         self.response.out.write("Hello World!")
 
 
+class PersonalProgressPage(BasePage):
+    def get(self):
+        if self.request.cookies.get(MEMBER_ID) is None:
+            self.redirect('/')
+        progress = Progress(parent=progress_key)
+        progress_detail = progress.get_progress_detail(self.request.cookies.get(MEMBER_ID))
+        template = os.path.join(os.path.dirname(__file__), 'personal_progress.html')
+        self.response.out.write(progress_detail)
+        self.response.out.write(render(template, {"progress": progress_detail}))
+
+
+class PersonalAttendancePage(BasePage):
+    def get(self):
+        if self.request.cookies.get(MEMBER_ID) is None:
+            self.redirect('/')
+        attendance = Attendence(parent=attendance_key)
+        attendance_detail = attendance.get_or_insert(self.request.cookies.get(MEMBER_ID))
+        template = os.path.join(os.path.dirname(__file__), 'personal_attendance.html')
+        self.response.out.write(attendance_detail)
+        self.response.out.write(render(template, {"attendance": attendance_detail}))
+
+
+class AdminMeetingListPage(BasePage):
+    def get(self):
+        if not self.is_admin_log_in(): self.redirect('/')
+        meeting = Meeting(parent=meeting_key)
+        all_meetings_detail = Meeting.get_all()
+        template = os.path.join(os.path.dirname(__file__), 'admin_meeting_list.html')
+        self.response.out.write(all_meetings_detail)
+        self.response.out.write(render(template, {"admin_meeting_list": all_meetings_detail}))
+
+class AdminMeetingAddPage(BasePage):
+    def get(self):
+        if not self.is_admin_log_in(): self.redirect('/')
+        meeting = Meeting(parent=meeting_key)
+        all_meetings_detail = meeting.get_or_insert(self.request.cookies.get('meeting_id','-1'))
+        template = os.path.join(os.path.dirname(__file__), 'admin_htm/admin_meeting_add.html')
+        self.update_cookie()
+        self.response.out.write(all_meetings_detail)
+        self.response.out.write(render(template, {"admin_meeting_list": all_meetings_detail}))
+
+
+
+
+class AdminMeetingAddUpdate(BasePage):
+    def post(self):
+        if not self.is_admin_log_in(): self.redirect('/')
+        meeting = Meeting(parent=meeting_key)
+        meeting_select = meeting.get_or_insert(self.request.get('meeting_id',-1))
+        meeting_select.meeting_time = self.request.get('meeting_time')
+        try:
+            meeting_select.meeting_id = int(self.request.get('meeting_id'))
+            meeting_select.put()
+        except:
+            self.redirect_cookie('/')
+            return
+        self.redirect_cookie('admin_meeting_list')
+
+
+
 app = webapp2.WSGIApplication([
     ('/', HomePage),
     ('/login', Login),
-    ('/member', MemberPage),
+    ('/personal', MemberPage),
+    ('/personal_progress',PersonalProgressPage),
+    ('/personal_attendance', PersonalAttendancePage),
     ('/add_update_detail', MemberUpdate),
     ('/signup', SignUp),
     ('/refresh_project', refresh_project),
     ('/home', Dummy),
     ('/project', Project),
+    ('/admin_meeting_list',AdminMeetingListPage),
+    ('/admin_meeting_add',AdminMeetingAddPage),
+    ('/admin_meeting_add_update', AdminMeetingAddUpdate),
 ], debug=True)
