@@ -80,52 +80,29 @@
 
 
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h1 class="page-header">Particulars</h1>
+        <h1 class="page-header">Members</h1>
 
         <div class="row placeholders">
-            <form action="/admin_meeting_add_update" method="post" class="navbar-form " role="form">
-                <div class="col-xs-6 col-sm-6 placeholder navbar-form navbar-left">
-                    <ul class="nav nav-sidebar navbar-left text-left">
-                        <li>
-                            <div class="input-group">
-                                <span class="input-group-addon">Meeting ID</span>
-                                <input type="text" name="meeting_id" class="form-control" value="{{ meeting.meeting_id }}">
-                            </div>
-                        </li>
-                        <br/>
-                        <li>
-                            <div class="input-group">
-                                <span class="input-group-addon">Meeting Time</span>
-                                <input type="text" name="meeting_time" class="form-control" value="{{ meeting.meeting_time }}">
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                    <ul>
-                        <li>
-                            <input type="submit" name='add_update' class="btn btn-lg btn-primary" value="ADD/UPDATE">
-                        </li>
-                    </ul>
-            </form>
-            <form action="/admin_meeting_delete" method="post" class="navbar-form " role="form">
-                <div class="col-xs-6 col-sm-6 placeholder navbar-form navbar-left">
-                    <ul class="nav nav-sidebar navbar-left text-left">
-                        <li>
-                            <div class="input-group">
-                                <span class="input-group-addon">Meeting ID</span>
-                                <input type="hidden" name="meeting_id" class="form-control" value="{{ meeting.meeting_id }}">
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <ul>
-                    <li>
-                        <input type="submit" name='delete' class="btn btn-lg btn-primary" value="DELETE">
-                    </li>
-                </ul>
-            </form>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Meeting ID</th>
+                    <th>Meeting Time</th>
+                    <th>Details >>></th>
+                </tr>
+                </thead>
+                <tbody>
 
+                {% for meeting in meetings %}
+                <tr>
+                    <td>{{ meeting.meeting_id }}</td>
+                    <td>{{ meeting.meeting_time }}</td>
+                    <td><a href='\meeting?meeting_id= {{ meeting.meeting_id }} '></a></td>
+                </tr>
+                {% endfor %}
 
+                </tbody>
+            </table>
         </div>
         <!--/.navbar-collapse -->
     </div>

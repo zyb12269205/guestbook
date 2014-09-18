@@ -8,9 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>SCCCI TOASTMASTER ADMIN</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
@@ -60,7 +59,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/">Home</a></li>
-                <li><a href="/projects.html">Projects</a></li>
+                <li><a href="/projects">Projects</a></li>
                 <li><a href="/meetings">Meetings</a></li>
             </ul>
 
@@ -72,64 +71,32 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="/admin_meeting_list">Meetings Up To Now</a></li>
-                <li class="active"><a href="/admin_meeting_add">Add A New Meeting</a></li>
+
+                    <li class="active"><a href="">Welcome Admin</a></li>
+                    <li><a href="">Meetings</a></li>
+
+                            <li><a href="">Meeting Attendance</a></li>
+
+                    <li><a href="">Projects</a></li>
+
+                            <li><a href="">Project Progress</a></li>
+
+                    <li><a href="">Members</a></li>
+
+                            <li><a href="">Meeting Attendance</a></li>
+                            <li><a href="">Project Progress</a></li>
+
+                    <li><a href="">Progress</a></li>
+                    <li><a href="">Attendance</a></li>
+
             </ul>
         </div>
     </div>
 
 
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h1 class="page-header">Particulars</h1>
 
-        <div class="row placeholders">
-            <form action="/admin_meeting_add_update" method="post" class="navbar-form " role="form">
-                <div class="col-xs-6 col-sm-6 placeholder navbar-form navbar-left">
-                    <ul class="nav nav-sidebar navbar-left text-left">
-                        <li>
-                            <div class="input-group">
-                                <span class="input-group-addon">Meeting ID</span>
-                                <input type="text" name="meeting_id" class="form-control" value="{{ meeting.meeting_id }}">
-                            </div>
-                        </li>
-                        <br/>
-                        <li>
-                            <div class="input-group">
-                                <span class="input-group-addon">Meeting Time</span>
-                                <input type="text" name="meeting_time" class="form-control" value="{{ meeting.meeting_time }}">
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                    <ul>
-                        <li>
-                            <input type="submit" name='add_update' class="btn btn-lg btn-primary" value="ADD/UPDATE">
-                        </li>
-                    </ul>
-            </form>
-            <form action="/admin_meeting_delete" method="post" class="navbar-form " role="form">
-                <div class="col-xs-6 col-sm-6 placeholder navbar-form navbar-left">
-                    <ul class="nav nav-sidebar navbar-left text-left">
-                        <li>
-                            <div class="input-group">
-                                <span class="input-group-addon">Meeting ID</span>
-                                <input type="hidden" name="meeting_id" class="form-control" value="{{ meeting.meeting_id }}">
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <ul>
-                    <li>
-                        <input type="submit" name='delete' class="btn btn-lg btn-primary" value="DELETE">
-                    </li>
-                </ul>
-            </form>
-
-
-        </div>
-        <!--/.navbar-collapse -->
     </div>
-</div>
 </div>
 
 <!-- Bootstrap core JavaScript

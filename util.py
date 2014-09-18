@@ -4,7 +4,8 @@ __author__ = 'zhanyingbo'
 import webapp2
 from constants import *
 import time
-
+import os
+from google.appengine.ext.webapp.template import render
 
 class BasePage(webapp2.RequestHandler):
     def is_user_log_in(self):
@@ -56,3 +57,9 @@ class BasePage(webapp2.RequestHandler):
         if key_detail is None: return
         self.update_expires(key_detail)
         self.redirect(url)
+
+    def render_page(self, page, content):
+        template = os.path.join(os.path.dirname(__file__), page)
+        #self.response.out.write(all_meetings_detail)
+        self.response.out.write(render(template, content))
+        self.update_cookie()

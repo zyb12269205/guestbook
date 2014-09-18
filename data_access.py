@@ -60,6 +60,7 @@ class Member(ndb.Model):
 class Project(ndb.Model):
     project_id = ndb.IntegerProperty()
     project_name = ndb.StringProperty()
+    project_requirement = ndb.StringProperty()
 
 
 class Meeting(ndb.Model):
