@@ -7,17 +7,18 @@ PROJECT_ID = 'project_id'
 
 
 #FILE DIRECTORY
-ADMIN_HOME_HTML = 'admin_htm/admin_home.html'
-ADMIN_MEETING_LIST_HTML = 'admin_htm/admin_meeting_list.html'
-ADMIN_MEETING_ADD_HTML = 'admin_htm/admin_meeting_add.html'
-ADMIN_MEMBER_LIST_HTML = 'admin_htm/admin_member_list.html'
-ADMIN_MEMBER_ADD_HTML = 'admin_htm/admin_member_add.html'
-ADMIN_PROJECT_LIST_HTML = 'admin_htm/admin_project_list.html'
-ADMIN_PROJECT_ADD_HTML = 'admin_htm/admin_project_add.html'
+ADMIN_HOME_HTML = 'admin_template/admin_home.html'
+ADMIN_MEETING_LIST_HTML = 'admin_template/admin_meeting_list.html'
+ADMIN_MEETING_ADD_HTML = 'admin_template/admin_meeting_add.html'
+ADMIN_MEMBER_LIST_HTML = 'admin_template/admin_member_list.html'
+ADMIN_MEMBER_ADD_HTML = 'admin_template/admin_member_add.html'
+ADMIN_PROJECT_LIST_HTML = 'admin_template/admin_project_list.html'
+ADMIN_PROJECT_ADD_HTML = 'admin_template/admin_project_add.html'
 
 
 #ACTION
 LOG_IN_ACTION = '/login'
+ADMIN_MEETING_MODI_ACTION = '/admin/meeting_modify_action'
 
 #PAGE
 ADMIN_HOME_PAGE = '/admin'

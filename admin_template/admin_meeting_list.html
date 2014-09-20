@@ -13,8 +13,8 @@
     <title>Dashboard Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen" href="./css/bootstrap-datetimepicker.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap-datetimepicker.min.css">
 
 
     <!-- Custom styles for this template -->
@@ -35,13 +35,7 @@
     <![endif]-->
     <style id="holderjs-style" type="text/css"></style>
 
-    <script type="text/javascript">
-      $(function() {
-        $('#datetimepicker_time').datetimepicker({
-          pickTime: false
-        });
-      });
-    </script>
+
 </head>
 
 <body>
@@ -55,7 +49,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://getbootstrap.com/examples/dashboard/#">Your Toastmaster</a>
+            <a class="navbar-brand" href="http://getbootstrap.com/examples/dashboard/admin_meeting_list.html#">Your Toastmaster</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -97,7 +91,7 @@
                 <tr>
                     <td>{{ meeting.meeting_id }}</td>
                     <td>{{ meeting.meeting_time }}</td>
-                    <td><a href='\meeting?meeting_id= {{ meeting.meeting_id }} '></a></td>
+                    <td><a href='/meeting?meeting_id= {{ meeting.meeting_id }} '>More Details</a></td>
                 </tr>
                 {% endfor %}
 
@@ -113,9 +107,9 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="./js/jquery.min.js"></script>
-<script src="./js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="./js/docs.min.js"></script>
-<script src="./js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
 
 
 <div id="global-zeroclipboard-html-bridge" class="global-zeroclipboard-container"

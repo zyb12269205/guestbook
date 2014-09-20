@@ -9,7 +9,7 @@ import os
 from google.appengine.ext.webapp.template import render
 
 
-class AdminHomePage(BasePage):
+class AdminHomePageClass(BasePage):
     def get(self):
         if not self.is_admin_log_in(): self.redirect('/')
         self.redirect_cookie(ADMIN_HOME_HTML)
@@ -22,8 +22,8 @@ class AdminMeetingListPageClass(BasePage):
     def get(self):
         if not self.is_admin_log_in(): self.redirect('/')
         meeting = Meeting(parent=meeting_key)
-        all_meetings_detail = Meeting.get_all()
-        self.render_page(ADMIN_MEETING_LIST_HTML,all_meetings_detail)
+        all_meetings_detail = meeting.get_all()
+        self.render_page(ADMIN_MEETING_LIST_HTML,{'meetings':all_meetings_detail})
 
 class AdminMeetingAddPageClass(BasePage):
     def get(self):

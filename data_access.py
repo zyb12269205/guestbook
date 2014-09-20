@@ -67,6 +67,13 @@ class Meeting(ndb.Model):
     meeting_id = ndb.IntegerProperty()
     meeting_time = ndb.StringProperty()
 
+    def get_all(cls):
+        list_meetings = []
+        for meeting in cls.query().fetch():
+            if meeting.meeting_id is not None:
+                list_meetings.append(meeting)
+        return list_meetings
+
 class Attendance(ndb.Model):
     meeting_id = ndb.IntegerProperty()
     member_id = ndb.IntegerProperty()

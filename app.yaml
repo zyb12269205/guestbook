@@ -8,21 +8,19 @@ handlers:
 
 # access the static resources in the root director
 
-#- url: /(.*)
-#  static_files: \1
-#  upload: (.*)
 
-- url: /css
+- url: /admin/css
   static_dir: css
 
-- url: /js
+- url: /admin/js
   static_dir: js
 
-- url: /fonts
+- url: /admin/fonts
   static_dir: fonts
 
-- url: /Bootstrap_files
+- url: /admin/Bootstrap_files
   static_dir: Bootstrap_files
+
   
 
 - url: /.*

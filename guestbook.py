@@ -39,8 +39,9 @@ class Login(BasePage):
         access = Access(parent=access_key)
         access_detail = access.verify_access(self.request.get(MEMBER_ID), self.request.get('password'))
         if access_detail:
-            if self.is_admin():
+            if self.request.get(MEMBER_ID) == '1':
                 self.insert_cookie(ADMIN_HOME_PAGE)
+                return
             self.insert_cookie('/individual')
         else:
             self.redirect('/')
@@ -161,8 +162,8 @@ class Login(BasePage):
 app = webapp2.WSGIApplication([
     ('/', HomePage),
     (LOG_IN_ACTION, Login),
-    (ADMIN_HOME_PAGE,)
-    ('/individual', MemberPage),
+    (ADMIN_HOME_PAGE,AdminHomePageClass),
+#    ('/individual', MemberPage),
     # ('/personal_progress',PersonalProgressPage),
     # ('/personal_attendance', PersonalAttendancePage),
     # ('/add_update_detail', MemberUpdate),
@@ -170,7 +171,8 @@ app = webapp2.WSGIApplication([
     # ('/refresh_project', refresh_project),
     # ('/home', Dummy),
     # ('/project', Project),
-    ('/admin_meeting_list',AdminMeetingListPageClass),
-    ('/admin_meeting_add',AdminMeetingAddPage),
-    ('/admin_meeting_add_update', AdminMeetingAddUpdate),
+    (ADMIN_MEETING_LIST_PAGE,AdminMeetingListPageClass),
+    (ADMIN_MEETING_HOME_PAGE,AdminMeetingListPageClass),
+    (ADMIN_MEETING_MODI_PAGE,AdminMeetingAddPageClass),
+    (ADMIN_MEETING_MODI_ACTION, AdminMeetingAddUpdateClass),
 ], debug=True)
