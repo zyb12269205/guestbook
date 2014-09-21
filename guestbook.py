@@ -31,8 +31,9 @@ from admin import *
 
 class HomePage(BasePage):
     def get(self):
-        template = os.path.join(os.path.dirname(__file__), 'home.html')
-        self.response.out.write(render(template, {}))
+        self.render_page(HOME_HTML,{})
+#        template = os.path.join(os.path.dirname(__file__), 'home.html')
+#        self.response.out.write(render(template, {}))
 
 class Login(BasePage):
     def post(self):
@@ -173,6 +174,7 @@ app = webapp2.WSGIApplication([
     # ('/project', Project),
     (ADMIN_MEETING_LIST_PAGE,AdminMeetingListPageClass),
     (ADMIN_MEETING_HOME_PAGE,AdminMeetingListPageClass),
-    (ADMIN_MEETING_MODI_PAGE,AdminMeetingAddPageClass),
+    (ADMIN_MEETING_MODI_PAGE,AdminMeetingPageClass),
     (ADMIN_MEETING_MODI_ACTION, AdminMeetingAddUpdateClass),
+    (ADMIN_MEETING_DELE_ACTION, AdminMeetingDeleteClass)
 ], debug=True)

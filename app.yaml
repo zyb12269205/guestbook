@@ -9,6 +9,18 @@ handlers:
 # access the static resources in the root director
 
 
+- url: /css
+  static_dir: css
+
+- url: /js
+  static_dir: js
+
+- url: /fonts
+  static_dir: fonts
+
+- url: /Bootstrap_files
+  static_dir: Bootstrap_files
+
 - url: /admin/css
   static_dir: css
 
@@ -21,7 +33,6 @@ handlers:
 - url: /admin/Bootstrap_files
   static_dir: Bootstrap_files
 
-  
 
 - url: /.*
   script: guestbook.app

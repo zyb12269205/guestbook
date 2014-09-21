@@ -69,21 +69,37 @@
 </div>
 
 <div class="container-fluid">
-    <div class="row">
+        <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="/admin_meeting_list">Meetings Up To Now</a></li>
-                <li class="active"><a href="/admin_meeting_add">Add A New Meeting</a></li>
+
+                    <li><a href="">Welcome Admin</a></li>
+                    <li class="active"><a href="/admin/meeting_list">Meetings</a></li>
+
+                            <li><a href="/admin/meeting_attendance">&emsp;Meeting Attendance</a></li>
+
+                    <li><a href="/admin/project_list">Projects</a></li>
+
+                            <li><a href="/admin/project_complete">&emsp;Project Progress</a></li>
+
+                    <li><a href="/admin/member_list">Members</a></li>
+
+                            <li><a href="/admin/member_attendance">&emsp;Meeting Attendance</a></li>
+                            <li><a href="/admin/member_complete">&emsp;Project Progress</a></li>
+
+                    <li><a href="/admin/progress">Progress</a></li>
+                    <li><a href="/admin/attendance">Attendance</a></li>
+
             </ul>
         </div>
     </div>
 
 
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h1 class="page-header">Particulars</h1>
+        <h1 class="page-header">Details </h1>
 
         <div class="row placeholders">
-            <form action="/admin_meeting_add_update" method="post" class="navbar-form " role="form">
+            <form action="/admin/meeting_modify_action" method="post" class="navbar-form " role="form">
                 <div class="col-xs-6 col-sm-6 placeholder navbar-form navbar-left">
                     <ul class="nav nav-sidebar navbar-left text-left">
                         <li>
@@ -107,25 +123,10 @@
                         </li>
                     </ul>
             </form>
-            <form action="/admin_meeting_delete" method="post" class="navbar-form " role="form">
-                <div class="col-xs-6 col-sm-6 placeholder navbar-form navbar-left">
-                    <ul class="nav nav-sidebar navbar-left text-left">
-                        <li>
-                            <div class="input-group">
-                                <span class="input-group-addon">Meeting ID</span>
-                                <input type="hidden" name="meeting_id" class="form-control" value="{{ meeting.meeting_id }}">
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <ul>
-                    <li>
-                        <input type="submit" name='delete' class="btn btn-lg btn-primary" value="DELETE">
-                    </li>
-                </ul>
-            </form>
 
-
+        </div>
+        <div>
+            <h3><a href="/admin/meeting_list">Back To Meetings</a></h3>
         </div>
         <!--/.navbar-collapse -->
     </div>

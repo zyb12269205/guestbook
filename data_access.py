@@ -67,6 +67,7 @@ class Meeting(ndb.Model):
     meeting_id = ndb.IntegerProperty()
     meeting_time = ndb.StringProperty()
 
+
     def get_all(cls):
         list_meetings = []
         for meeting in cls.query().fetch():

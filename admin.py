@@ -12,7 +12,7 @@ from google.appengine.ext.webapp.template import render
 class AdminHomePageClass(BasePage):
     def get(self):
         if not self.is_admin_log_in(): self.redirect('/')
-        self.redirect_cookie(ADMIN_HOME_HTML)
+        self.render_page(ADMIN_HOME_HTML,{})
 
 ###################
 # meeting related
@@ -25,27 +25,30 @@ class AdminMeetingListPageClass(BasePage):
         all_meetings_detail = meeting.get_all()
         self.render_page(ADMIN_MEETING_LIST_HTML,{'meetings':all_meetings_detail})
 
-class AdminMeetingAddPageClass(BasePage):
+class AdminMeetingPageClass(BasePage):
     def get(self):
         if not self.is_admin_log_in(): self.redirect('/')
-        meeting = Meeting(parent=meeting_key)
-        all_meetings_detail = meeting.get_or_insert(self.request.cookies.get('meeting_id','-1'))
-        self.render_page(ADMIN_MEETING_ADD_HTML,all_meetings_detail)
+        try:
+            meeting = Meeting.get_by_id(id=int(self.request.get(MEETING_ID)),parent=meeting_key)
+        except:
+            meeting = None
+        self.render_page(ADMIN_MEETING_ADD_HTML,{'meeting':meeting})
 
 
 class AdminMeetingAddUpdateClass(BasePage):
     def post(self):
         if not self.is_admin_log_in(): self.redirect('/')
-        meeting = Meeting(parent=meeting_key)
-        meeting_select = meeting.get_or_insert(self.request.get('meeting_id',-1))
+        meeting_id = self.request.get(MEETING_ID,'-1')
+        meeting_select = Meeting(id=int(meeting_id),parent=meeting_key)
         meeting_select.meeting_time = self.request.get('meeting_time')
+        meeting_select.key_name = meeting_id
         try:
-            meeting_select.meeting_id = int(self.request.get('meeting_id'))
+            meeting_select.meeting_id = int(meeting_id)
             meeting_select.put()
         except:
             self.redirect_cookie('/')
             return
-        self.redirect_cookie('/admin_meeting_list')
+        self.redirect_cookie(ADMIN_MEETING_LIST_PAGE)
 
 class AdminMeetingDeleteClass(BasePage):
     def post(self):
