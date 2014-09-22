@@ -176,5 +176,11 @@ app = webapp2.WSGIApplication([
     (ADMIN_MEETING_HOME_PAGE,AdminMeetingListPageClass),
     (ADMIN_MEETING_MODI_PAGE,AdminMeetingPageClass),
     (ADMIN_MEETING_MODI_ACTION, AdminMeetingAddUpdateClass),
-    (ADMIN_MEETING_DELE_ACTION, AdminMeetingDeleteClass)
+    (ADMIN_MEETING_DELE_ACTION, AdminMeetingDeleteClass),
+
+    (ADMIN_PROJECT_LIST_PAGE,AdminProjectListPageClass),
+    (ADMIN_PROJECT_HOME_PAGE,AdminProjectListPageClass),
+    (ADMIN_PROJECT_MODI_PAGE,AdminProjectPageClass),
+    (ADMIN_PROJECT_MODI_ACTION, AdminProjectAddUpdateClass),
+    (ADMIN_PROJECT_DELE_ACTION, AdminProjectDeleteClass),
 ], debug=True)

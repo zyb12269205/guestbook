@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
-    <title>SCCCI Meeting</title>
+    <title>SCCCI Project</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
@@ -74,11 +74,11 @@
             <ul class="nav nav-sidebar">
 
                     <li><a href="">Welcome Admin</a></li>
-                    <li class="active"><a href="/admin/meeting_list">Meetings</a></li>
+                    <li><a href="/admin/meeting_list">Meetings</a></li>
 
                             <li><a href="/admin/meeting_attendance">&emsp;Meeting Attendance</a></li>
 
-                    <li><a href="/admin/project_list">Projects</a></li>
+                    <li class="active"><a href="/admin/project_list">Projects</a></li>
 
                             <li><a href="/admin/project_complete">&emsp;Project Progress</a></li>
 
@@ -104,15 +104,22 @@
                     <ul class="nav nav-sidebar navbar-left text-left">
                         <li>
                             <div class="input-group">
-                                <span class="input-group-addon">Meeting ID</span>
-                                <input type="text" name="meeting_id" class="form-control" value="{{ meeting.meeting_id }}">
+                                <span class="input-group-addon">Project ID</span>
+                                <input type="text" name="project_id" class="form-control" value="{{ project.project_id }}">
                             </div>
                         </li>
                         <br/>
                         <li>
                             <div class="input-group">
-                                <span class="input-group-addon">Meeting Time</span>
-                                <input type="text" name="meeting_time" class="form-control" value="{{ meeting.meeting_time }}">
+                                <span class="input-group-addon">Project Name</span>
+                                <input type="text" name="project_name" class="form-control" value="{{ project.project_name }}">
+                            </div>
+                        </li>
+                        <br/>
+                        <li>
+                            <div class="input-group">
+                                <span class="input-group-addon">Project Requirement</span>
+                                <input type="text" name="project_requirement" class="form-control" value="{{ project.project_requirement }}">
                             </div>
                         </li>
                     </ul>
@@ -126,7 +133,7 @@
 
         </div>
         <div>
-            <h3><a href="/admin/meeting_list">Back To Meetings</a></h3>
+            <h3><a href="/admin/project_list">Back To Projects</a></h3>
         </div>
         <!--/.navbar-collapse -->
     </div>

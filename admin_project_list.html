@@ -10,11 +10,11 @@
     <meta name="author" content="">
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
-    <title>SCCCI Meeting</title>
+    <title>SCCCI ADMIN PROJECTS</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen" href="./css/bootstrap-datetimepicker.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap-datetimepicker.min.css">
 
 
     <!-- Custom styles for this template -->
@@ -35,13 +35,7 @@
     <![endif]-->
     <style id="holderjs-style" type="text/css"></style>
 
-    <script type="text/javascript">
-      $(function() {
-        $('#datetimepicker_time').datetimepicker({
-          pickTime: false
-        });
-      });
-    </script>
+
 </head>
 
 <body>
@@ -55,7 +49,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://getbootstrap.com/examples/dashboard/#">Your Toastmaster</a>
+            <a class="navbar-brand" href="http://getbootstrap.com/examples/dashboard/admin_meeting_list.html#">Your Toastmaster</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -69,16 +63,16 @@
 </div>
 
 <div class="container-fluid">
-        <div class="row">
+    <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
 
                     <li><a href="">Welcome Admin</a></li>
-                    <li class="active"><a href="/admin/meeting_list">Meetings</a></li>
+                    <li><a href="/admin/meeting_list">Meetings</a></li>
 
                             <li><a href="/admin/meeting_attendance">&emsp;Meeting Attendance</a></li>
 
-                    <li><a href="/admin/project_list">Projects</a></li>
+                    <li  class="active"><a href="/admin/project_list">Projects</a></li>
 
                             <li><a href="/admin/project_complete">&emsp;Project Progress</a></li>
 
@@ -96,37 +90,38 @@
 
 
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h1 class="page-header">Details </h1>
+        <h1 class="page-header">Projects</h1>
 
         <div class="row placeholders">
-            <form action="/admin/meeting_modify_action" method="post" class="navbar-form " role="form">
-                <div class="col-xs-6 col-sm-6 placeholder navbar-form navbar-left">
-                    <ul class="nav nav-sidebar navbar-left text-left">
-                        <li>
-                            <div class="input-group">
-                                <span class="input-group-addon">Meeting ID</span>
-                                <input type="text" name="meeting_id" class="form-control" value="{{ meeting.meeting_id }}">
-                            </div>
-                        </li>
-                        <br/>
-                        <li>
-                            <div class="input-group">
-                                <span class="input-group-addon">Meeting Time</span>
-                                <input type="text" name="meeting_time" class="form-control" value="{{ meeting.meeting_time }}">
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                    <ul>
-                        <li>
-                            <input type="submit" name='add_update' class="btn btn-lg btn-primary" value="ADD/UPDATE">
-                        </li>
-                    </ul>
-            </form>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <td>Project ID</td>
+                    <td>Project Name</td>
+                    <td>Update</td>
+                    <td>Delete</td>
+                </tr>
 
-        </div>
-        <div>
-            <h3><a href="/admin/meeting_list">Back To Meetings</a></h3>
+                </thead>
+                <tbody>
+
+                {% for project in projects %}
+                <tr>
+                    <td>{{ meeting.project_id }}</td>
+                    <td>{{ meeting.project_name }}</td>
+                    <td><a href='/admin/project_modify?project_id= {{ project.project_id }} '>Edit</a></td>
+                    <td><a href='/admin/project_delete_action?project_id= {{ project.project_id }} '>Delete</a></td>
+                </tr>
+                {% endfor %}
+
+                 <tr>
+                     <td colspan=4>
+                         <a href='/admin/project_modify?project_id=-1 '>Add New Project</a>
+                     </td>
+                 </tr>
+
+                </tbody>
+            </table>
         </div>
         <!--/.navbar-collapse -->
     </div>
@@ -137,9 +132,9 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="./js/jquery.min.js"></script>
-<script src="./js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="./js/docs.min.js"></script>
-<script src="./js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
 
 
 <div id="global-zeroclipboard-html-bridge" class="global-zeroclipboard-container"

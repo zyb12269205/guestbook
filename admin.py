@@ -38,12 +38,12 @@ class AdminMeetingPageClass(BasePage):
 class AdminMeetingAddUpdateClass(BasePage):
     def post(self):
         if not self.is_admin_log_in(): self.redirect('/')
-        meeting_id = self.request.get(MEETING_ID,'-1')
+        meeting_id = int(self.request.get(MEETING_ID,'-1'))
         meeting_select = Meeting(id=int(meeting_id),parent=meeting_key)
         meeting_select.meeting_time = self.request.get('meeting_time')
         meeting_select.key_name = meeting_id
         try:
-            meeting_select.meeting_id = int(meeting_id)
+            meeting_select.meeting_id = meeting_id
             meeting_select.put()
         except:
             self.redirect_cookie('/')
@@ -68,31 +68,34 @@ class AdminProjectListPageClass(BasePage):
     def get(self):
         if not self.is_admin_log_in(): self.redirect('/')
         project = Project(parent=project_key)
-        all_projects_detail = Project.get_all()
-        self.render_page(ADMIN_PROJECT_LIST_HTML,all_projects_detail)
+        all_projects_detail = project.get_all()
+        self.render_page(ADMIN_PROJECT_LIST_HTML,{'projects':all_projects_detail})
 
-class AdminProjectAddPageClass(BasePage):
+class AdminProjectPageClass(BasePage):
     def get(self):
         if not self.is_admin_log_in(): self.redirect('/')
-        project = Project(parent=project_key)
-        all_projects_detail = project.get_or_insert(self.request.cookies.get('project_id','-1'))
-        self.render_page(ADMIN_PROJECT_ADD_HTML,all_projects_detail)
+        try:
+            project = Project.get_by_id(id=int(self.request.get(PROJECT_ID)),parent=project_key)
+        except:
+            project = None
+        self.render_page(ADMIN_PROJECT_ADD_HTML,{'project':project})
 
 
 class AdminProjectAddUpdateClass(BasePage):
     def post(self):
         if not self.is_admin_log_in(): self.redirect('/')
-        project = Project(parent=project_key)
-        project_select = project.get_or_insert(self.request.get('project_id',-1))
+        project_id = int(self.request.get(PROJECT_ID,'-1'))
+        project_select = Project(id=project_id,parent=project_key)
         project_select.project_name = self.request.get('project_name')
         project_select.project_requirement = self.request.get('project_requirement')
+        project_select.key_name = project_id
         try:
-            project_select.project_id = int(self.request.get('project_id'))
+            project_select.project_id = project_id
             project_select.put()
         except:
             self.redirect_cookie('/')
             return
-        self.redirect_cookie('/admin_project_list')
+        self.redirect_cookie(ADMIN_PROJECT_LIST_PAGE)
 
 class AdminProjectDeleteClass(BasePage):
     def post(self):
@@ -101,7 +104,7 @@ class AdminProjectDeleteClass(BasePage):
         project = Project(parent=project_key)
         project_select = project.get_or_insert(project_id)
         project_select.key.delete()
-        self.redirect_cookie('/admin_project_list')
+        self.redirect_cookie(ADMIN_PROJECT_LIST_PAGE)
 
 
 class AdminMemberListPageClass(BasePage):

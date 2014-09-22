@@ -20,7 +20,8 @@ HOME_HTML = 'home.html'
 LOG_IN_ACTION = '/login'
 ADMIN_MEETING_MODI_ACTION = '/admin/meeting_modify_action'
 ADMIN_MEETING_DELE_ACTION = '/admin/meeting_delete_action'
-
+ADMIN_PROJECT_MODI_ACTION = '/admin/project_modify_action'
+ADMIN_PROJECT_DELE_ACTION = '/admin/project_delete_action'
 #PAGE
 
 ADMIN_HOME_PAGE = '/admin'

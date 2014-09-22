@@ -62,6 +62,13 @@ class Project(ndb.Model):
     project_name = ndb.StringProperty()
     project_requirement = ndb.StringProperty()
 
+    def get_all(cls):
+        list_projects = []
+        for project in cls.query().fetch():
+            if project.project_id is not None and int(project.project_id) > 0:
+                list_projects.append(project)
+        return list_projects
+
 
 class Meeting(ndb.Model):
     meeting_id = ndb.IntegerProperty()
@@ -71,7 +78,7 @@ class Meeting(ndb.Model):
     def get_all(cls):
         list_meetings = []
         for meeting in cls.query().fetch():
-            if meeting.meeting_id is not None:
+            if meeting.meeting_id is not None and int(meeting.meeting_id) > 0:
                 list_meetings.append(meeting)
         return list_meetings
 
