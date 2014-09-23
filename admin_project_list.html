@@ -107,8 +107,8 @@
 
                 {% for project in projects %}
                 <tr>
-                    <td>{{ meeting.project_id }}</td>
-                    <td>{{ meeting.project_name }}</td>
+                    <td>{{ project.project_id }}</td>
+                    <td>{{ project.project_name }}</td>
                     <td><a href='/admin/project_modify?project_id= {{ project.project_id }} '>Edit</a></td>
                     <td><a href='/admin/project_delete_action?project_id= {{ project.project_id }} '>Delete</a></td>
                 </tr>
@@ -116,7 +116,7 @@
 
                  <tr>
                      <td colspan=4>
-                         <a href='/admin/project_modify?project_id=-1 '>Add New Project</a>
+                         <a href='/admin/project_modify?project_id=0 '>Add New Project</a>
                      </td>
                  </tr>
 
