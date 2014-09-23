@@ -22,6 +22,8 @@ ADMIN_MEETING_MODI_ACTION = '/admin/meeting_modify_action'
 ADMIN_MEETING_DELE_ACTION = '/admin/meeting_delete_action'
 ADMIN_PROJECT_MODI_ACTION = '/admin/project_modify_action'
 ADMIN_PROJECT_DELE_ACTION = '/admin/project_delete_action'
+ADMIN_MEMBER_MODI_ACTION = '/admin/member_modify_action'
+ADMIN_MEMBER_DELE_ACTION = '/admin/member_delete_action'
 #PAGE
 
 ADMIN_HOME_PAGE = '/admin'
@@ -38,7 +40,7 @@ ADMIN_PROJECT_COMP_PAGE = '/admin/project_complete'
 
 ADMIN_MEMBER_HOME_PAGE = '/admin/member_list'
 ADMIN_MEMBER_LIST_PAGE = '/admin/member_list'
-ADMIN_MEMBER_MODI_PAGE = '/admin/memner_modify'
+ADMIN_MEMBER_MODI_PAGE = '/admin/member_modify'
 ADMIN_MEMBER_ATTD_PAGE = '/admin/member_attendance'
 ADMIN_MEMBER_COMP_PAGE = '/admin/member_complete'
 

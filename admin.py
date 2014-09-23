@@ -115,11 +115,60 @@ class AdminProjectDeleteClass(BasePage):
 
 
 
+###################
+# member related
+#
+##################
 class AdminMemberListPageClass(BasePage):
     def get(self):
         if not self.is_admin_log_in(): self.redirect('/')
         member = Member(parent=member_key)
-        all_members = member.get_all()
-        self.render_page(ADMIN_PROJECT_LIST_HTML,all_members)
+        all_members_detail = member.get_all()
+        self.render_page(ADMIN_MEMBER_LIST_HTML,{'members':all_members_detail})
+
+class AdminMemberPageClass(BasePage):
+    def get(self):
+        if not self.is_admin_log_in(): self.redirect('/')
+        try:
+            member = Member.get_by_id(id=int(self.request.get(MEMBER_ID)),parent=member_key)
+        except:
+            member = None
+        self.render_page(ADMIN_MEMBER_ADD_HTML,{'member':member})
 
 
+class AdminMemberAddUpdateClass(BasePage):
+    def post(self):
+        if not self.is_admin_log_in(): self.redirect('/')
+        try:
+            member_id = int(self.request.get(MEMBER_ID,'0'))
+            member_select = Member(id=member_id,parent=member_key)
+            member_select.member_id = member_id
+            member_select.english_name = self.request.get('english_name', '')
+            member_select.chinese_name = self.request.get('chinese_name', '')
+            member_select.salutation = self.request.get('salutation', '')
+            member_select.nric = self.request.get('nric', '')
+            member_select.nationality = self.request.get('nationality', '')
+            #member.join_time = self.request.get('join_time')
+            member_select.title = self.request.get('title', '')
+            #member.date_of_birth = self.request.get('date_of_birth')
+            member_select.contact = self.request.get('contact', '')
+            member_select.address = self.request.get('address', '')
+            member_select.email = self.request.get('email', '')
+            member_select.company = self.request.get('company', '')
+            member_select.industry = self.request.get('industry', '')
+            member_select.job_title = self.request.get('job_title', '')
+            member_select.key_name = member_id
+            member_select.put()
+        except:
+            self.redirect_cookie(ADMIN_MEMBER_LIST_PAGE)
+            return
+        self.redirect_cookie(ADMIN_MEMBER_LIST_PAGE)
+
+class AdminMemberDeleteClass(BasePage):
+    def post(self):
+        if not self.is_admin_log_in(): self.redirect('/')
+        member_id = self.request.get(MEMBER_ID,0)
+        member = Member(parent=member_key)
+        member_select = member.get_or_insert(member_id)
+        member_select.key.delete()
+        self.redirect_cookie(ADMIN_MEMBER_LIST_PAGE)

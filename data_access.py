@@ -55,7 +55,13 @@ class Member(ndb.Model):
       if len(details) == 1: return details[0]
       else: return None
 
-    
+
+    def get_all(cls):
+        list_members = []
+        for member in cls.query().fetch():
+            if member.member_id is not None and int(member.member_id) > 0:
+                list_members.append(member)
+        return list_members
 
 class Project(ndb.Model):
     project_id = ndb.IntegerProperty()
