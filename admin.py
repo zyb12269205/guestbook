@@ -172,3 +172,18 @@ class AdminMemberDeleteClass(BasePage):
         member_select = member.get_or_insert(member_id)
         member_select.key.delete()
         self.redirect_cookie(ADMIN_MEMBER_LIST_PAGE)
+
+
+##########################
+#attendance related
+#
+##########################
+class AdminAttendanceListPageClass(BasePage):
+    def get(self):
+        if not self.is_admin_log_in(): self.redirect('/')
+        attendance = Attendance(parent=attendance_key)
+        attendance_details = attendance.get_all(self.request.get('meeting_id',-1))
+        self.render_page(ADMIN_ATTENDANCE_LIST_HTML,{'attendances':attendance_details})
+
+
+

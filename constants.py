@@ -14,6 +14,7 @@ ADMIN_MEMBER_LIST_HTML = 'admin_member_list.html'
 ADMIN_MEMBER_ADD_HTML = 'admin_member_add.html'
 ADMIN_PROJECT_LIST_HTML = 'admin_project_list.html'
 ADMIN_PROJECT_ADD_HTML = 'admin_project_add.html'
+ADMIN_ATTENDANCE_LIST_HTML = 'admin_attendance_list.html'
 HOME_HTML = 'home.html'
 
 #ACTION

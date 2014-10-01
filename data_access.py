@@ -63,6 +63,13 @@ class Member(ndb.Model):
                 list_members.append(member)
         return list_members
 
+    def member_name_dict(self):
+        members = self.get_all()
+        member_dict = {}
+        for member in members:
+            member_dict[member.member_id] = member.english_name
+        return member_dict
+
 class Project(ndb.Model):
     project_id = ndb.IntegerProperty()
     project_name = ndb.StringProperty()
@@ -74,6 +81,7 @@ class Project(ndb.Model):
             if project.project_id is not None and int(project.project_id) > 0:
                 list_projects.append(project)
         return list_projects
+
 
 
 class Meeting(ndb.Model):
@@ -91,7 +99,31 @@ class Meeting(ndb.Model):
 class Attendance(ndb.Model):
     meeting_id = ndb.IntegerProperty()
     member_id = ndb.IntegerProperty()
-    appear = ndb.IntegerProperty() # 0 no 1 yes, default 0
+    attend = ndb.IntegerProperty()
+
+    def get_all(self, meeting_id):
+        list_attendance = []
+        member_dict = Member(parent=member_key).member_name_dict()
+        if meeting_id <=0: return None
+        for attendance in self.query().fetch():
+            attendance_dict = {}
+            try:
+                if int(meeting_id) != int(attendance.meeting_id): continue
+            except:
+                return None
+            attendance_dict['meeting_id'] = meeting_id
+            attendance_dict['member_id'] = attendance.member_id
+            attendance_dict['member_name'] = member_dict.get(attendance.member_id, None)
+            if attendance_dict['member_name'] is None: continue
+            attendance_dict['attend'] = attendance.attend
+            list_attendance.append(attendance_dict)
+        return list_attendance
+
+
+
+
+
+
 
 class Progress(ndb.Model):
     member_id = ndb.IntegerProperty()

@@ -189,4 +189,9 @@ app = webapp2.WSGIApplication([
     (ADMIN_MEMBER_MODI_PAGE,AdminMemberPageClass),
     (ADMIN_MEMBER_MODI_ACTION, AdminMemberAddUpdateClass),
     (ADMIN_MEMBER_DELE_ACTION, AdminMemberDeleteClass),
+
+    (ADMIN_ATTENDANCE_HOME_PAGE,AdminAttendanceListPageClass),
+    (ADMIN_ATTENDANCE_LIST_PAGE,AdminAttendanceListPageClass),
+    (ADMIN_ATTENDANCE_MODI_PAGE,AdminMemberPageClass),
+
 ], debug=True)

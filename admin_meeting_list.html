@@ -70,7 +70,7 @@
                     <li><a href="">Welcome Admin</a></li>
                     <li class="active"><a href="/admin/meeting_list">Meetings</a></li>
 
-                            <li><a href="/admin/meeting_attendance">&emsp;Meeting Attendance</a></li>
+                            <li><a href="/admin/attendance_list">&emsp;Meeting Attendance</a></li>
 
                     <li><a href="/admin/project_list">Projects</a></li>
 
@@ -80,9 +80,6 @@
 
                             <li><a href="/admin/member_attendance">&emsp;Meeting Attendance</a></li>
                             <li><a href="/admin/member_complete">&emsp;Project Progress</a></li>
-
-                    <li><a href="/admin/progress">Progress</a></li>
-                    <li><a href="/admin/attendance">Attendance</a></li>
 
             </ul>
         </div>
@@ -109,6 +106,7 @@
                 <tr>
                     <td>{{ meeting.meeting_id }}</td>
                     <td>{{ meeting.meeting_time }}</td>
+                    <td><a href="/admin/attendance_list?meeting_id= {{meeting.meeting_id}}">Meeting Attendance</a></td>
                     <td><a href='/admin/meeting_modify?meeting_id= {{ meeting.meeting_id }} '>Edit</a></td>
                     <td><a href='/admin/meeting_delete_action?meeting_id= {{ meeting.meeting_id }} '>Delete</a></td>
                 </tr>
