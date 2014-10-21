@@ -15,6 +15,7 @@ ADMIN_MEMBER_ADD_HTML = 'admin_member_add.html'
 ADMIN_PROJECT_LIST_HTML = 'admin_project_list.html'
 ADMIN_PROJECT_ADD_HTML = 'admin_project_add.html'
 ADMIN_ATTENDANCE_LIST_HTML = 'admin_attendance_list.html'
+ADMIN_PROGRESS_LIST_HTML = 'admin_progress_list.html'
 HOME_HTML = 'home.html'
 
 #ACTION
@@ -25,6 +26,8 @@ ADMIN_PROJECT_MODI_ACTION = '/admin/project_modify_action'
 ADMIN_PROJECT_DELE_ACTION = '/admin/project_delete_action'
 ADMIN_MEMBER_MODI_ACTION = '/admin/member_modify_action'
 ADMIN_MEMBER_DELE_ACTION = '/admin/member_delete_action'
+ADMIN_ATTENDANCE_MODI_ACTION = '/admin/attendance_modify_action'
+ADMIN_PROGRESS_MODI_ACTION = '/admin/progress_modify_action'
 #PAGE
 
 ADMIN_HOME_PAGE = '/admin'
@@ -51,7 +54,6 @@ ADMIN_PROGRESS_MODI_PAGE = '/admin/progress_modify'
 
 ADMIN_ATTENDANCE_HOME_PAGE = '/admin/attendance_list'
 ADMIN_ATTENDANCE_LIST_PAGE = '/admin/attendance_list'
-ADMIN_ATTENDANCE_MODI_PAGE = '/admin/attendance_modify'
 
 #GENERAL
 PROJECT_PAGE = '/projects'

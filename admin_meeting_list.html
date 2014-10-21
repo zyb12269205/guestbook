@@ -66,21 +66,12 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-
-                    <li><a href="">Welcome Admin</a></li>
-                    <li class="active"><a href="/admin/meeting_list">Meetings</a></li>
-
-                            <li><a href="/admin/attendance_list">&emsp;Meeting Attendance</a></li>
-
-                    <li><a href="/admin/project_list">Projects</a></li>
-
-                            <li><a href="/admin/project_complete">&emsp;Project Progress</a></li>
-
-                    <li><a href="/admin/member_list">Members</a></li>
-
-                            <li><a href="/admin/member_attendance">&emsp;Meeting Attendance</a></li>
-                            <li><a href="/admin/member_complete">&emsp;Project Progress</a></li>
-
+                <li><a href="">Welcome Admin</a></li>
+                <li class="active"><a href="/admin/meeting_list">Meetings</a></li>
+                <li><a href="/admin/attendance_list">Meeting Attendance</a></li>
+                <li><a href="/admin/project_list">Projects</a></li>
+                <li><a href="/admin/progress_list">Project Progress</a></li>
+                <li><a href="/admin/member_list">Members</a></li>
             </ul>
         </div>
     </div>
@@ -95,6 +86,7 @@
                 <tr>
                     <td>Meeting ID</td>
                     <td>Meeting Time</td>
+                    <td>Meeting Attendance</td>
                     <td>Update</td>
                     <td>Delete</td>
                 </tr>
@@ -113,7 +105,7 @@
                 {% endfor %}
 
                  <tr>
-                     <td colspan=4>
+                     <td colspan=5>
                          <a href='/admin/meeting_modify?meeting_id=0 '>Add New Meeting</a>
                      </td>
                  </tr>

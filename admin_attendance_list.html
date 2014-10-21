@@ -17,6 +17,9 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap-datetimepicker.min.css">
 
 
+    <!-- bootstrap widget theme -->
+    <link rel="stylesheet" href="css/theme.bootstrap.css">
+
     <!-- Custom styles for this template -->
     <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
 
@@ -67,19 +70,12 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
 
-                    <li><a href="">Welcome Admin</a></li>
-                    <li><a href="/admin/meeting_list">Meetings</a></li>
-
-                            <li  class="active"><a href="/admin/attendance_list">&emsp;Meeting Attendance</a></li>
-
-                    <li><a href="/admin/project_list">Projects</a></li>
-
-                            <li><a href="/admin/project_complete">&emsp;Project Progress</a></li>
-
-                    <li><a href="/admin/member_list">Members</a></li>
-
-                            <li><a href="/admin/member_attendance">&emsp;Meeting Attendance</a></li>
-                            <li><a href="/admin/member_complete">&emsp;Project Progress</a></li>
+                <li><a href="">Welcome Admin</a></li>
+                <li><a href="/admin/meeting_list">Meetings</a></li>
+                <li class="active"><a href="/admin/attendance_list">Meeting Attendance</a></li>
+                <li><a href="/admin/project_list">Projects</a></li>
+                <li><a href="/admin/progress_list">Project Progress</a></li>
+                <li><a href="/admin/member_list">Members</a></li>
 
             </ul>
         </div>
@@ -89,33 +85,47 @@
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h1 class="page-header">Members</h1>
 
-        <div class="row placeholders">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <td>Member ID</td>
-                    <td>Member Name</td>
-                    <td>Attendance</td>
-                </tr>
+            <div class="row placeholders">
+                <table class="tablesorter table table-bordered tablesorter-bootstrap">
+                    <thead>
+                    <tr>
+                        <th>Meeting ID</th>
+                        <th>Meeting Time</th>
+                        <th>Member ID</th>
+                        <th>Member Name</th>
+                        <th>Attendance</th>
+                    </tr>
 
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
 
-                {% for attendance in attendances %}
-                <tr>
-                    <td>{{ attendance.member_id }}</td>
-                    <td>{{ attendance.member_name }}</td>
-                    {% if attendance.attend == 1 %}
-                        <td><input type="checkbox" name="{{attendance.member_id}" checked="checked">Attend Meeting<br></td>
-                    {% else %}
-                        <td><input type="checkbox" name="{{attendance.member_id}">Attend Meeting<br></td>
-                    {% endif %}
+                    {% for attendance in attendances %}
+                     <form action="/admin/attendance_modify_action" method="post" class="navbar-form " role="form">
+                        <tr>
+                            <td>{{ attendance.meeting_id }}</td>
+                            <td>{{ attendance.meeting_time }}</td>
+                            <td>{{ attendance.member_id }}</td>
+                            <td>{{ attendance.member_name }}</td>
+                            {% if attendance.attend == 1 %}
+                                <td>
+                                    <input type="hidden" name="{{attendance.row_id}}" onclick="this.form.submit();"  value="0"/>
+                                    <input type="checkbox" name="{{attendance.row_id}}" onclick="this.form.submit();" checked="checked" value="0"/>Attend Meeting<br>
+                                </td>
+                            {% else %}
+                                <td>
+                                    <input type="hidden" name="{{attendance.row_id}}" onclick="this.form.submit();"  value="0"/>
+                                    <input type="checkbox" name="{{attendance.row_id}}" onclick="this.form.submit();" value="0"/>Attend Meeting<br>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    </form>
+                    {% endfor %}
 
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
+
+
         <!--/.navbar-collapse -->
     </div>
 </div>
@@ -124,11 +134,37 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="./js/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="./js/docs.min.js"></script>
-<script src="js/bootstrap-datetimepicker.min.js"></script>
 
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/jquery.tablesorter.js"></script>
+<script src="js/jquery.tablesorter.widgets.js"></script>
+
+
+<script>
+   $(function() {
+
+  var $table = $('table').tablesorter({
+    theme: 'blue',
+    widgets: ["zebra", "filter"],
+    widgetOptions : {
+      // filter_anyMatch replaced! Instead use the filter_external option
+      // Set to use a jQuery selector (or jQuery object) pointing to the
+      // external filter (column specific or any match)
+      filter_external : '.search',
+      // add a default type search to the first name column
+      filter_defaultFilter: { 1 : '~{query}' },
+      // include column filters
+      filter_columnFilters: true,
+      filter_placeholder: { search : 'Search...' },
+      filter_saveFilters : true,
+      filter_reset: '.reset'
+    }
+  });
+
+});
+</script>
 
 <div id="global-zeroclipboard-html-bridge" class="global-zeroclipboard-container"
      style="position: absolute; left: 0px; top: -9999px; width: 15px; height: 15px; z-index: 999999999;" title=""

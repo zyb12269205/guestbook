@@ -180,10 +180,40 @@ class AdminMemberDeleteClass(BasePage):
 ##########################
 class AdminAttendanceListPageClass(BasePage):
     def get(self):
-        if not self.is_admin_log_in(): self.redirect('/')
+        if not self.is_admin_log_in(): self.redirect_cookie('/')
         attendance = Attendance(parent=attendance_key)
-        attendance_details = attendance.get_all(self.request.get('meeting_id',-1))
+        attendance_details = attendance.get_all()
         self.render_page(ADMIN_ATTENDANCE_LIST_HTML,{'attendances':attendance_details})
+
+
+class AdminAttendanceUpdateClass(BasePage):
+    def post(self):
+        if not self.is_admin_log_in(): self.redirect_cookie('/')
+        try:
+            attendance = Attendance(parent=attendance_key)
+            attendance.update_all(self.request)
+        except:
+            pass
+        self.redirect_cookie(ADMIN_ATTENDANCE_LIST_PAGE)
+
+
+class AdminProgressListPageClass(BasePage):
+    def get(self):
+        if not self.is_admin_log_in(): self.redirect_cookie('/')
+        progress = Progress(parent=progress_key)
+        progress_details = progress.get_all()
+        self.render_page(ADMIN_PROGRESS_LIST_HTML,{'progresses': progress_details})
+
+
+class AdminProgressUpdateClass(BasePage):
+    def post(self):
+        if not self.is_admin_log_in(): self.redirect_cookie('/')
+        try:
+            progress = Progress(parent=progress_key)
+            progress.update_all(self.request)
+        except:
+            pass
+        self.redirect_cookie(ADMIN_PROGRESS_LIST_PAGE)
 
 
 

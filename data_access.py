@@ -82,6 +82,12 @@ class Project(ndb.Model):
                 list_projects.append(project)
         return list_projects
 
+    def project_name_dict(self):
+        projects = self.get_all()
+        project_dict = {}
+        for project in projects:
+            project_dict[project.project_id] = project.project_name
+        return project_dict
 
 
 class Meeting(ndb.Model):
@@ -96,38 +102,121 @@ class Meeting(ndb.Model):
                 list_meetings.append(meeting)
         return list_meetings
 
+    def meeting_dict(self):
+        meeting_dict = {}
+        for meeting in self.query().fetch():
+            if meeting.meeting_id is not None and int(meeting.meeting_id) > 0:
+                meeting_dict[int(meeting.meeting_id)] = meeting.meeting_time
+        return meeting_dict
+
 class Attendance(ndb.Model):
     meeting_id = ndb.IntegerProperty()
     member_id = ndb.IntegerProperty()
     attend = ndb.IntegerProperty()
 
-    def get_all(self, meeting_id):
+    def get_all(self):
         list_attendance = []
         member_dict = Member(parent=member_key).member_name_dict()
-        if meeting_id <=0: return None
+        meeting_dict = Meeting(parent=meeting_key).meeting_dict()
+        attendance_dict = {}
+        for meeting_id in meeting_dict.keys():
+            for member_id in member_dict.keys():
+                id = str(member_id)+'$'+str(meeting_id)
+                attendance_dict[id] = {
+                    'meeting_id': meeting_id,
+                    'member_id': member_id,
+                    'member_name': member_dict[member_id],
+                    'meeting_time': meeting_dict[meeting_id],
+                    'attend': 0,
+                    'row_id': id,
+                }
         for attendance in self.query().fetch():
-            attendance_dict = {}
-            try:
-                if int(meeting_id) != int(attendance.meeting_id): continue
-            except:
-                return None
-            attendance_dict['meeting_id'] = meeting_id
-            attendance_dict['member_id'] = attendance.member_id
-            attendance_dict['member_name'] = member_dict.get(attendance.member_id, None)
-            if attendance_dict['member_name'] is None: continue
-            attendance_dict['attend'] = attendance.attend
-            list_attendance.append(attendance_dict)
+            id = str(attendance.member_id)+'$'+str(attendance.meeting_id)
+            attendance_dict[id]['attend'] = attendance.attend
+
+        for value in attendance_dict.values():
+            list_attendance.append(value)
         return list_attendance
 
+    def update_all(self, request):
+        ids = set()
+        member_dict = Member(parent=member_key).member_name_dict()
+        meeting_dict = Meeting(parent=meeting_key).meeting_dict()
+        for attendance in self.query().fetch():
+            id = str(attendance.member_id)+'$'+str(attendance.meeting_id)
+            if id in ids: continue
+            ids.add(id)
+            if request.get(id, None) is None: continue
+            attendance.attend = 1 - int(attendance.attend)
+            attendance.put()
 
-
-
-
+        for member_id in member_dict.keys():
+            for meeting_id in meeting_dict.keys():
+                id = str(member_id)+'$'+str(meeting_id)
+                if id in ids: continue
+                attendance_select = Attendance(parent=attendance_key)
+                attendance_select.member_id = member_id
+                attendance_select.meeting_id = meeting_id
+                attendance_select.attend = 0
+                attendance_select.put()
+                ids.add(id)
+        return ids
 
 
 class Progress(ndb.Model):
     member_id = ndb.IntegerProperty()
     project_id = ndb.IntegerProperty()
     meeting_id = ndb.IntegerProperty()
+    complete = ndb.IntegerProperty()
+
+    def get_all(self):
+        list_progress = []
+        member_dict = Member(parent=member_key).member_name_dict()
+        project_dict = Project(parent=project_key).project_name_dict()
+        progress_dict = {}
+        for member_id in member_dict.keys():
+            for project_id in project_dict.keys():
+                progress_dict[str(member_id)+'$'+str(project_id)] = {
+                    'member_id': member_id,
+                    'project_id': project_id,
+                    'member_name': member_dict[member_id],
+                    'project_name': project_dict[project_id],
+                    'complete': 0,
+                    'row_id': str(member_id)+'$'+str(project_id)
+                }
+
+        for progress in self.query().fetch():
+            id = str(progress.member_id)+'$'+str(progress.project_id)
+            if id in progress_dict.keys():
+                progress_dict[id]['complete'] = progress.complete
+
+        for value in progress_dict.values():
+                list_progress.append(value)
+
+        return list_progress
+
+    def update_all(self, request):
+        ids = set()
+        member_dict = Member(parent=member_key).member_name_dict()
+        project_dict = Project(parent=project_key).project_name_dict()
+        for progress in self.query().fetch():
+            id = str(progress.member_id)+'$'+str(progress.project_id)
+            if id in ids: continue
+            ids.add(id)
+            if request.get(id, None) is None: continue
+            progress.complete = 1 - int(progress.complete)
+            progress.put()
 
 
+        for member_id in member_dict.keys():
+            for project_id in project_dict.keys():
+                id = str(member_id)+'$'+str(project_id)
+                if id in ids:continue
+                progress_select = Progress(parent=progress_key)
+                progress_select.member_id = member_id
+                progress_select.project_id = project_id
+                progress_select.complete = 0
+                progress_select.put()
+                ids.add(id)
+
+        return

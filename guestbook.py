@@ -192,6 +192,9 @@ app = webapp2.WSGIApplication([
 
     (ADMIN_ATTENDANCE_HOME_PAGE,AdminAttendanceListPageClass),
     (ADMIN_ATTENDANCE_LIST_PAGE,AdminAttendanceListPageClass),
-    (ADMIN_ATTENDANCE_MODI_PAGE,AdminMemberPageClass),
+    (ADMIN_ATTENDANCE_MODI_ACTION,AdminAttendanceUpdateClass),
+
+    (ADMIN_PROGRESS_LIST_PAGE, AdminProgressListPageClass),
+    (ADMIN_PROGRESS_MODI_ACTION, AdminProgressUpdateClass)
 
 ], debug=True)

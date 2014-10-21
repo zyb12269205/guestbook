@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+{% autoescape on %}
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>SCCCI ADMIN PROGRESS</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap-datetimepicker.min.css">
+
+
+    <!-- bootstrap widget theme -->
+    <link rel="stylesheet" href="css/theme.bootstrap.css">
+
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+    <style id="holderjs-style" type="text/css"></style>
+
+
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://getbootstrap.com/examples/dashboard/admin_meeting_list.html#">Your Toastmaster</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/projects.html">Projects</a></li>
+                <li><a href="/meetings">Meetings</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                    <li><a href="">Welcome Admin</a></li>
+                    <li><a href="/admin/meeting_list">Meetings</a></li>
+                    <li><a href="/admin/attendance_list">Meeting Attendance</a></li>
+                    <li><a href="/admin/project_list">Projects</a></li>
+                    <li class="active"><a href="/admin/progress_list">Project Progress</a></li>
+                    <li><a href="/admin/member_list">Members</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">Progress</h1>
+
+            <div class="row placeholders">
+                <table class="tablesorter table table-bordered tablesorter-bootstrap">
+                    <thead>
+                    <tr>
+                        <th>Member ID</th>
+                        <th>Member Name</th>
+                        <th>Project ID</th>
+                        <th>Project Name</th>
+                        <th>Progress</th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+
+                    {% for progress in progresses %}
+
+                    <form action="/admin/progress_modify_action" method="post" class="navbar-form " role="form">
+                        <tr>
+                            <td>{{ progress.member_id }}</td>
+                            <td>{{ progress.member_name }}</td>
+                            <td>{{ progress.project_id }}</td>
+                            <td>{{ progress.project_name }}</td>
+                            {% if progress.complete == 1 %}
+                                <td>
+                                    <input type="hidden" name="{{progress.row_id}}" onclick="this.form.submit();"  value="0"/>
+                                    <input type="checkbox" name="{{progress.row_id}}" onclick="this.form.submit();" checked="checked" value="0"/>Complete Project<br>
+                                </td>
+                            {% else %}
+                                <td>
+                                    <input type="hidden" name="{{progress.row_id}}" onclick="this.form.submit();"  value="0"/>
+                                    <input type="checkbox" name="{{progress.row_id}}" onclick="this.form.submit();" value="0"/>Complete Project<br>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    </form>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+
+
+        <!--/.navbar-collapse -->
+    </div>
+</div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/jquery.tablesorter.js"></script>
+<script src="js/jquery.tablesorter.widgets.js"></script>
+
+<script>
+   $(function() {
+
+  var $table = $('table').tablesorter({
+    theme: 'blue',
+    widgets: ["zebra", "filter"],
+    widgetOptions : {
+      // filter_anyMatch replaced! Instead use the filter_external option
+      // Set to use a jQuery selector (or jQuery object) pointing to the
+      // external filter (column specific or any match)
+      filter_external : '.search',
+      // add a default type search to the first name column
+      filter_defaultFilter: { 1 : '~{query}' },
+      // include column filters
+      filter_columnFilters: true,
+      filter_placeholder: { search : 'Search...' },
+      filter_saveFilters : true,
+      filter_reset: '.reset'
+    }
+  });
+
+});
+</script>
+
+<div id="global-zeroclipboard-html-bridge" class="global-zeroclipboard-container"
+     style="position: absolute; left: 0px; top: -9999px; width: 15px; height: 15px; z-index: 999999999;" title=""
+     data-original-title="Copy to clipboard">
+    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" id="global-zeroclipboard-flash-bridge" width="100%"
+            height="100%">
+        <param name="movie" value="/assets/flash/ZeroClipboard.swf?noCache=1405691182884">
+        <param name="allowScriptAccess" value="sameDomain">
+        <param name="scale" value="exactfit">
+        <param name="loop" value="false">
+        <param name="menu" value="false">
+        <param name="quality" value="best">
+        <param name="bgcolor" value="#ffffff">
+        <param name="wmode" value="transparent">
+        <param name="flashvars"
+               value="trustedOrigins=getbootstrap.com%2C%2F%2Fgetbootstrap.com%2Chttp%3A%2F%2Fgetbootstrap.com">
+        <embed src="/assets/flash/ZeroClipboard.swf?noCache=1405691182884" loop="false" menu="false" quality="best"
+               bgcolor="#ffffff" width="100%" height="100%" name="global-zeroclipboard-flash-bridge"
+               allowscriptaccess="sameDomain" allowfullscreen="false" type="application/x-shockwave-flash"
+               wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer"
+               flashvars="trustedOrigins=getbootstrap.com%2C%2F%2Fgetbootstrap.com%2Chttp%3A%2F%2Fgetbootstrap.com"
+               scale="exactfit">
+    </object>
+</div>
+</body>
+<div id="fullScreener_Favorites_div">
+    <div class="fullScreener_Favorites_bg"></div>
+    <div id="fullScreener_tree"></div>
+</div>
+<div id="fullScreener_Bar">
+    <div class="backGrd"></div>
+    <input id="fullScreener_search" type="text" size="20" value="http://getbootstrap.com/examples/dashboard/">
+
+    <div id="fullScreener_newtab"></div>
+    <div id="fullScreener_back" class=""></div>
+    <div id="fullScreener_forward" class=""></div>
+    <div id="fullScreener_reload"></div>
+    <div id="fullScreener_tabs_btn"></div>
+    <div id="fullScreener_favorites"></div>
+    <div id="fullScreener_closetab"></div>
+</div>
+</html>
+{% endautoescape %}
