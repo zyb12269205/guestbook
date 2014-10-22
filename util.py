@@ -60,6 +60,6 @@ class BasePage(webapp2.RequestHandler):
 
     def render_page(self, page, content):
         template = os.path.join(os.path.dirname(__file__), page)
-        self.response.out.write(content)
+        #self.response.out.write(content)
         self.response.out.write(render(template, content))
         self.update_cookie()

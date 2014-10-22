@@ -60,13 +60,15 @@ class Member(ndb.Model):
         list_members = []
         for member in cls.query().fetch():
             if member.member_id is not None and int(member.member_id) > 0:
-                list_members.append(member)
+                list_members.append({
+                    'member_id':member.member_id,
+                    'member_name': member.english_name,
+                })
         return list_members
 
     def member_name_dict(self):
-        members = self.get_all()
         member_dict = {}
-        for member in members:
+        for member in self.query().fetch():
             member_dict[member.member_id] = member.english_name
         return member_dict
 
@@ -166,7 +168,6 @@ class Attendance(ndb.Model):
 class Progress(ndb.Model):
     member_id = ndb.IntegerProperty()
     project_id = ndb.IntegerProperty()
-    meeting_id = ndb.IntegerProperty()
     complete = ndb.IntegerProperty()
 
     def get_all(self):
