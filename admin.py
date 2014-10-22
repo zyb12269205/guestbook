@@ -192,6 +192,7 @@ class AdminAttendanceUpdateClass(BasePage):
         try:
             attendance = Attendance(parent=attendance_key)
             attendance.update_all(self.request)
+
         except:
             pass
         self.redirect_cookie(ADMIN_ATTENDANCE_LIST_PAGE)

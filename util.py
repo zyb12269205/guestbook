@@ -7,6 +7,7 @@ import time
 import os
 from google.appengine.ext.webapp.template import render
 
+SLEEP_TIME = 0.3
 class BasePage(webapp2.RequestHandler):
     def is_user_log_in(self):
         if not self.is_log_in():
@@ -49,10 +50,12 @@ class BasePage(webapp2.RequestHandler):
 
 
     def redirect_cookie(self, url):
+        time.sleep(SLEEP_TIME)
         self.update_cookie()
         self.redirect(url)
 
     def insert_cookie(self, url):
+        time.sleep(SLEEP_TIME)
         key_detail = self.request.get(MEMBER_ID, None)
         if key_detail is None: return
         self.update_expires(key_detail)
